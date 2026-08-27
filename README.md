@@ -40,15 +40,20 @@ for the full account of what is exact vs. approximated.
 
 ### Table 4 — main comparison
 
-| Model | Acc (paper) | Acc (ours) | MCC (paper) | MCC (ours) | Params (ours) |
-|---|---|---|---|---|---|
-| **MSCPNet** | 97.44% | **97.60%** | 0.9653 | 0.9673 | 266,836 |
-| MobileNetV2 | 96.65% | 97.12% | 0.9542 | 0.9607 | 2,228,996 |
-| Truncated MobileNetV2 | 95.85% | 96.81% | 0.9434 | 0.9564 | 55,620 |
-| DenseNet121 | 95.53% | 96.96% | 0.9396 | 0.9586 | 6,957,956 |
-| ShuffleNetV2 | 94.09% | 96.96% | 0.9209 | 0.9589 | 1,257,704 |
-| SqueezeNet | 93.61% | 96.81% | 0.9135 | 0.9566 | 724,548 |
-| ResNet50 | 95.21% | 96.01% | 0.9356 | 0.9456 | 23,516,228 |
+| Model | Acc (paper) | Acc (ours) | MCC (paper) | MCC (ours) | Params (paper) | Params (ours) |
+|---|---|---|---|---|---|---|
+| **MSCPNet** | 97.44% | **97.60%** | 0.9653 | 0.9673 | 998,084 | 266,836 |
+| MobileNetV2 | 96.65% | 97.12% | 0.9542 | 0.9607 | 2,230,000 | 2,228,996 |
+| Truncated MobileNetV2 | 95.85% | 96.81% | 0.9434 | 0.9564 | — | 55,620 |
+| DenseNet121 | 95.53% | 96.96% | 0.9396 | 0.9586 | 6,960,000 | 6,957,956 |
+| ShuffleNetV2 | 94.09% | 96.96% | 0.9209 | 0.9589 | 1,260,000 | 1,257,704 |
+| SqueezeNet | 93.61% | 96.81% | 0.9135 | 0.9566 | 724,548 | 724,548 |
+| ResNet50 | 95.21% | 96.01% | 0.9356 | 0.9456 | 23,520,000 | 23,516,228 |
+
+"Params (paper)" is not a column in the paper's Table 4 itself — it's assembled from the
+prose in Sections IV.F/IV.G and Table 10, which state each pretrained backbone's parameter
+count. Truncated MobileNetV2's is never disclosed on its own (only its FLOPs are). MSCPNet's
+998,084 is the one paper param count our reproduction could not match (see below).
 
 MSCPNet is the top performer in both the paper and this reproduction. Parameter counts for
 every pretrained backbone match the paper's reported values almost exactly (see

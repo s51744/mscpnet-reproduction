@@ -30,14 +30,17 @@ RESULTS_DIR = ROOT / "results"
 RESULTS_DIR.mkdir(exist_ok=True, parents=True)
 
 PAPER_TABLE4 = {
-    # model: accuracy, precision, recall, f1, mcc, inference_time_s, flops
-    "densenet121":            dict(accuracy=0.9553, precision=0.9437, recall=0.9515, f1=0.9469, mcc=0.9396, inference_time_s=0.0289, flops=2_860_000_000),
-    "resnet50":                dict(accuracy=0.9521, precision=0.9371, recall=0.9541, f1=0.9437, mcc=0.9356, inference_time_s=0.0120, flops=4_100_000_000),
-    "shufflenet_v2":          dict(accuracy=0.9409, precision=0.9220, recall=0.9398, f1=0.9282, mcc=0.9209, inference_time_s=0.0107, flops=147_800_000),
-    "squeezenet":              dict(accuracy=0.9361, precision=0.9213, recall=0.9225, f1=0.9212, mcc=0.9135, inference_time_s=0.0091, flops=None),  # paper never states SqueezeNet's exact FLOPs in the text
-    "mobilenet_v2":            dict(accuracy=0.9665, precision=0.9626, recall=0.9585, f1=0.9604, mcc=0.9542, inference_time_s=0.0110, flops=312_900_000),
-    "truncated_mobilenet_v2":  dict(accuracy=0.9585, precision=0.9502, recall=0.9519, f1=0.9509, mcc=0.9434, inference_time_s=0.0083, flops=132_470_000),
-    "mscpnet":                 dict(accuracy=0.9744, precision=0.9676, recall=0.9737, f1=0.9704, mcc=0.9653, inference_time_s=0.0111, flops=315_258_752),
+    # Table 4 itself only lists accuracy/precision/recall/f1/mcc/inference_time;
+    # FLOPs and params for these same models come from the prose in Sections IV.F-G
+    # and Table 10 (SqueezeNet's 724,548 and MSCPNet's 998,084 are exact citations,
+    # the rest are the paper's rounded "X.XX million" figures).
+    "densenet121":            dict(accuracy=0.9553, precision=0.9437, recall=0.9515, f1=0.9469, mcc=0.9396, inference_time_s=0.0289, flops=2_860_000_000, params=6_960_000),
+    "resnet50":                dict(accuracy=0.9521, precision=0.9371, recall=0.9541, f1=0.9437, mcc=0.9356, inference_time_s=0.0120, flops=4_100_000_000, params=23_520_000),
+    "shufflenet_v2":          dict(accuracy=0.9409, precision=0.9220, recall=0.9398, f1=0.9282, mcc=0.9209, inference_time_s=0.0107, flops=147_800_000, params=1_260_000),
+    "squeezenet":              dict(accuracy=0.9361, precision=0.9213, recall=0.9225, f1=0.9212, mcc=0.9135, inference_time_s=0.0091, flops=None, params=724_548),
+    "mobilenet_v2":            dict(accuracy=0.9665, precision=0.9626, recall=0.9585, f1=0.9604, mcc=0.9542, inference_time_s=0.0110, flops=312_900_000, params=2_230_000),
+    "truncated_mobilenet_v2":  dict(accuracy=0.9585, precision=0.9502, recall=0.9519, f1=0.9509, mcc=0.9434, inference_time_s=0.0083, flops=132_470_000, params=None),  # paper never states this one
+    "mscpnet":                 dict(accuracy=0.9744, precision=0.9676, recall=0.9737, f1=0.9704, mcc=0.9653, inference_time_s=0.0111, flops=315_258_752, params=998_084),
 }
 
 
@@ -113,7 +116,8 @@ def build_comparison_table():
             "acc_paper": paper["accuracy"], "acc_ours": ours["accuracy"],
             "f1_paper": paper["f1"], "f1_ours": ours["f1"],
             "mcc_paper": paper["mcc"], "mcc_ours": ours["mcc"],
-            "params_ours": ours["params"], "flops_paper": paper["flops"], "flops_ours": ours["flops"],
+            "params_paper": paper["params"], "params_ours": ours["params"],
+            "flops_paper": paper["flops"], "flops_ours": ours["flops"],
             "inftime_paper_s": paper["inference_time_s"], "inftime_ours_s": ours["inference_time_s"],
         })
     df = pd.DataFrame(rows)
