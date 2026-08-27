@@ -1,0 +1,14 @@
+{
+  "tag": "truncated_mobilenet_v2",
+  "model": "truncated_mobilenet_v2",
+  "best_epoch": 18,
+  "params": 55620.0,
+  "flops": 132502432.0,
+  "inference_time_s": 0.002540552616119385,
+  "loss": 0.13360480350692727,
+  "accuracy": 0.9680511182108626,
+  "precision": 0.9601129639591178,
+  "recall": 0.9626301143437006,
+  "f1": 0.9613330212721694,
+  "mcc": 0.9564062008802889
+}

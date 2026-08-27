@@ -1,0 +1,26 @@
+# raw dataset (download via kaggle CLI, see README)
+data/
+
+# model weights (large binaries; *_summary.json metrics are tracked instead)
+checkpoints/*.pt
+checkpoints/*.npy
+
+__pycache__/
+*.pyc
+
+# raw stdout/orchestration logs (structured metrics are in logs/*.jsonl instead)
+*_output.log
+logs/*_stdout.log
+run_table5.sh
+run_tomato.sh
+
+# not yet included in this push (tomato / Table 13-14, Grad-CAM / Figure 13)
+src/train_tomato.py
+src/tomato_dataset.py
+src/split_tomato.py
+src/eval_tomato_viz.py
+src/gradcam.py
+results/*tomato*
+results/gradcam/
+checkpoints/*tomato*
+logs/*tomato*
